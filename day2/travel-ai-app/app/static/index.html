@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Recommendations</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+    <main>
+        <h1>Descubre lugares para tu próximo viaje</h1>
+
+        <form id="travel-form">
+
+            <div>
+                <label for="first-city">Ciudad de origen</label>
+                <input
+                    type="text"
+                    id="first-city"
+                    name="first_city"
+                    placeholder="Ej. Montevideo"
+                    required
+                >
+            </div>
+
+            <div>
+                <label for="second-city">Ciudad de destino</label>
+                <input
+                    type="text"
+                    id="second-city"
+                    name="second_city"
+                    placeholder="Ej. Punta del Este"
+                    required
+                >
+            </div>
+
+            <div>
+                <label for="purpose">Finalidad del viaje</label>
+                <select id="purpose" name="purpose" required>
+                    <option value="">Selecciona una opción</option>
+                    <option value="physical_activity">Actividad física</option>
+                    <option value="entertainment">Entretenimiento</option>
+                    <option value="cultural">Cultural</option>
+                    <option value="gastronomy">Gastronomía</option>
+                </select>
+            </div>
+
+            <button type="submit">
+                Buscar recomendaciones
+            </button>
+
+        </form>
+
+        <section id="results">
+            <!-- Las recomendaciones aparecerán aquí -->
+        </section>
+    </main>
+
+</body>
+<script src="/static/app.js"></script>
+</html>
