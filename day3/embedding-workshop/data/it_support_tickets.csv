@@ -1,0 +1,36 @@
+ticket_id,title,description,category,priority,status
+1,Error 403 al ejecutar GitHub Action,El workflow de GitHub devuelve un error 403 cuando un usuario intenta ejecutarlo desde la aplicación.,GitHub,high,open
+2,Token sin permisos suficientes,La aplicación puede consultar GitHub pero recibe un error de autorización al ejecutar determinadas acciones.,GitHub,high,open
+3,Error de autenticación al iniciar sesión,El usuario introduce credenciales válidas pero la aplicación rechaza el inicio de sesión.,authentication,high,open
+4,Sesión expirada inesperadamente,La sesión del usuario termina antes del tiempo esperado y debe autenticarse nuevamente.,authentication,medium,open
+5,Contraseña olvidada,Un usuario no recuerda su contraseña y necesita recuperar el acceso a la aplicación.,authentication,low,closed
+6,Error 500 en el dashboard,El dashboard muestra un error interno del servidor al cargar los datos del usuario.,backend,high,open
+7,API devuelve datos incorrectos,Un endpoint de la aplicación responde correctamente pero algunos campos contienen valores inesperados.,backend,medium,open
+8,Endpoint responde demasiado lento,Una consulta a la API tarda varios segundos en responder y afecta la experiencia del usuario.,performance,medium,open
+9,Aplicación pierde conexión con PostgreSQL,El backend pierde periódicamente la conexión con la base de datos PostgreSQL.,database,high,open
+10,Consulta PostgreSQL muy lenta,Una operación que consulta muchos registros tarda demasiado en completarse.,database,medium,open
+11,Migración de base de datos fallida,Una migración de Django falla al intentar modificar la estructura de una tabla.,database,high,open
+12,Frontend no carga los datos,La interfaz React se muestra correctamente pero no presenta los datos recibidos desde la API.,frontend,medium,open
+13,Error de CORS,El navegador bloquea las solicitudes del frontend porque el origen no está permitido por el backend.,frontend,medium,open
+14,Formulario no permite enviar datos,El botón de envío permanece deshabilitado aunque todos los campos requeridos parecen completos.,frontend,low,open
+15,Docker container no inicia,El contenedor de la aplicación termina inmediatamente después de iniciar.,deployment,high,open
+16,Problema con variables de entorno,La aplicación no encuentra una variable de configuración requerida al ejecutarse en el entorno de despliegue.,deployment,high,open
+17,GitHub Actions falla en CI,El pipeline de integración continua falla durante la ejecución de las pruebas automatizadas.,CI/CD,medium,open
+18,Tests E2E fallan en CI,Las pruebas end-to-end funcionan localmente pero fallan cuando se ejecutan dentro del pipeline.,testing,medium,open
+19,SonarQube reporta vulnerabilidades,El análisis estático del proyecto detecta problemas de seguridad que deben ser revisados.,quality,medium,open
+20,Aplicación consume demasiada memoria,El proceso del backend incrementa progresivamente su consumo de memoria durante períodos prolongados.,performance,high,open
+21,Archivos estáticos no aparecen,Los archivos CSS y JavaScript no se sirven correctamente después del despliegue.,deployment,medium,open
+22,Error 404 en una ruta de React,Al acceder directamente a una ruta interna de la aplicación se obtiene un error 404.,frontend,medium,open
+23,JWT rechazado por el backend,Las solicitudes autenticadas reciben un error porque el token JWT no es aceptado por la API.,authentication,high,open
+24,Configuración OAuth incorrecta,El inicio de sesión mediante OAuth falla porque la configuración del cliente no coincide con la registrada en el proveedor.,authentication,high,open
+25,Timeout al consultar servicio externo,El backend supera el tiempo máximo de espera al comunicarse con un servicio externo.,integration,medium,open
+26,Webhook no recibido,Un servicio externo indica que envió un webhook pero la aplicación no registra la recepción del evento.,integration,medium,open
+27,Logs insuficientes para diagnosticar error,El equipo no puede identificar la causa de un fallo porque la aplicación no registra suficiente información.,observability,low,open
+28,Configuración diferente entre entornos,La aplicación funciona en desarrollo pero presenta errores debido a diferencias de configuración en producción.,deployment,high,open
+29,Permisos insuficientes en Azure,El despliegue no puede acceder a un recurso de Azure porque la identidad utilizada no tiene los permisos necesarios.,cloud,high,open
+30,Deployment queda bloqueado,El proceso de despliegue permanece ejecutándose durante mucho tiempo sin completar ni mostrar un error claro.,deployment,medium,open
+31,Error de conexión con MySQL,El backend no consigue establecer una conexión con la base de datos MySQL configurada.,database,high,open
+32,Cache devuelve información antigua,La aplicación muestra datos desactualizados porque una respuesta anterior permanece almacenada en la caché.,backend,low,open
+33,React muestra error después de actualizar,"Después de actualizar la página, un componente React falla al intentar acceder a datos que todavía no fueron cargados.",frontend,medium,open
+34,Solicitud bloqueada por CSRF,El backend rechaza una solicitud porque falta o no coincide el token de protección CSRF.,security,medium,open
+35,Dependencia Python incompatible,"Después de actualizar una dependencia, el proyecto deja de iniciar debido a un conflicto de versiones.",dependencies,medium,open
