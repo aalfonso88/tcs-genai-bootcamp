@@ -40,8 +40,8 @@ function MaterialForm({onCreate}){
         <label htmlFor="mat-desc" className="block text-sm font-medium">Descripción</label>
         <input id="mat-desc" value={description} onChange={e=>setDescription(e.target.value)} className="mt-1 block w-full border rounded px-2 py-1 bg-gray-700 text-gray-100" />
       </div>
-      {error && <div role="alert" className="text-red-600">{error}</div>}
-      <button type="submit" className="bg-sky-600 text-white px-3 py-1 rounded">Crear</button>
+      {error && <div role="alert" className="text-red-400">{error}</div>}
+      <button type="submit" className="bg-teal-500 text-slate-900 px-3 py-1 rounded">Crear</button>
     </form>
   )
 }

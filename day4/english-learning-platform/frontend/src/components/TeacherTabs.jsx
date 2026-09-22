@@ -8,11 +8,11 @@ export default function TeacherTabs(){
     <div>
       <div role="tablist" aria-label="Teacher sections" className="flex gap-2 mb-4">
         <button role="tab" aria-selected={tab==='materials'} onClick={()=>setTab('materials')}
-          className={`px-3 py-1 rounded ${tab==='materials'? 'bg-sky-600 text-white':'bg-gray-800 text-gray-200'}`}>
+          className={`px-3 py-1 rounded ${tab==='materials'? 'bg-teal-500 text-slate-900':'bg-slate-700 text-slate-200'}`}>
           Materiales
         </button>
         <button role="tab" aria-selected={tab==='lessons'} onClick={()=>setTab('lessons')}
-          className={`px-3 py-1 rounded ${tab==='lessons'? 'bg-sky-600 text-white':'bg-gray-800 text-gray-200'}`}>
+          className={`px-3 py-1 rounded ${tab==='lessons'? 'bg-teal-500 text-slate-900':'bg-slate-700 text-slate-200'}`}>
           Lecciones
         </button>
       </div>
