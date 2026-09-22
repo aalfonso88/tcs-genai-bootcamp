@@ -29,11 +29,11 @@ function MaterialForm({onCreate}){
         <input id="mat-title" value={title} onChange={e=>setTitle(e.target.value)} aria-required="true" className="mt-1 block w-full border rounded px-2 py-1" />
       </div>
       <div>
-        <label htmlFor="mat-level" className="block text-sm font-medium">Nivel</label>
-        <select id="mat-level" value={level} onChange={e=>setLevel(e.target.value)} className="mt-1 border rounded px-2 py-1">
-          <option value="A">A</option>
-          <option value="B">B</option>
-          <option value="C">C</option>
+        <label htmlFor="mat-level" className="block text-sm font-medium">Classroom Level</label>
+        <select id="mat-level" value={level} onChange={e=>setLevel(e.target.value)} className="mt-1 border rounded px-2 py-1 bg-white text-black">
+          <option value="A">Level A</option>
+          <option value="B">Level B</option>
+          <option value="C">Level C</option>
         </select>
       </div>
       <div>
@@ -67,14 +67,14 @@ export default function TeacherMaterials(){
   }
 
   return (
-    <div className="p-4 border rounded bg-white">
-      <h2 className="text-xl font-medium">Materiales (Profesor)</h2>
+    <div className="p-4 border rounded bg-gray-800">
+      <h2 className="text-xl font-medium">Materiales</h2>
       <div className="mt-3"><MaterialForm onCreate={onCreate} /></div>
       <ul className="mt-4 space-y-2">
         {materials.map(m=> (
           <li key={m.id} className="flex justify-between items-center">
-            <div><strong>{m.title}</strong> <span className="text-sm text-gray-600">({m.assigned_level})</span></div>
-            <button aria-label={`Eliminar ${m.title}`} onClick={()=>remove(m.id)} className="text-sm text-red-600">Eliminar</button>
+            <div><strong>{m.title}</strong> <span className="text-sm text-gray-400">({m.assigned_level})</span></div>
+            <button aria-label={`Eliminar ${m.title}`} onClick={()=>remove(m.id)} className="text-sm text-red-400">Eliminar</button>
           </li>
         ))}
       </ul>

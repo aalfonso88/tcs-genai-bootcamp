@@ -15,8 +15,8 @@ export default function LessonsList({lessons, onStart}){
         {lessons.map(l=> (
           <li key={l.id} className="flex justify-between items-center border rounded p-2">
             <div>
-              <div className="font-medium">{l.title}</div>
-              <div className="text-sm text-gray-600">{l.level} — {l.status}</div>
+                <div className="font-medium">{l.title}</div>
+                <div className="text-sm text-gray-400">{l.level} — {l.status}</div>
             </div>
             <div>
               {l.status==='scheduled' && <button className="bg-green-600 text-white px-2 py-1 rounded" onClick={()=>onStart(l.id)}>Iniciar</button>}
