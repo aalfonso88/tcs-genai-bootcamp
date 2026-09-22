@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import api from '../services/api'
 import ProgressSummary from '../components/ProgressSummary'
 import TaskList from '../components/TaskList'
+import LessonsList from '../components/LessonsList'
 
 export default function StudentDashboard(){
   const [data, setData] = useState(null)
@@ -11,8 +12,12 @@ export default function StudentDashboard(){
     api.get('/student/').then(students=>{
       const id = (students && students.length>0) ? students[0].id : 1
       api.get(`/student/${id}/dashboard`).then(r=>setData(r))
+      // also fetch lessons for this student's level
+      api.get(`/lessons?level=${students[0].level}`).then(ls=>setLessons(ls))
     }).catch(()=> api.get('/student/1/dashboard').then(r=>setData(r)))
   },[])
+
+  const [lessons, setLessons] = React.useState([])
 
   if(!data) return <div role="status" aria-live="polite">Cargando...</div>
 
@@ -31,6 +36,11 @@ export default function StudentDashboard(){
         {data.materials.length===0? <p className="text-sm text-gray-600">No hay materiales</p>: (
           <ul className="list-disc pl-5">{data.materials.map(m=><li key={m.id}><strong>{m.title}</strong> ({m.assigned_level})</li>)}</ul>
         )}
+      </div>
+      <div className="p-4 border rounded bg-gray-800">
+        <h3 className="text-lg font-medium">Lecciones en vivo</h3>
+        {/* reuse LessonsList but filter only live lessons */}
+        <LessonsList lessons={lessons.filter(l=>l.status==='live')} onStart={()=>{}} />
       </div>
     </div>
   )
