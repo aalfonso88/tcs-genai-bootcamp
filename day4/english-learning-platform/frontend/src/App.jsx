@@ -1,7 +1,6 @@
 import React, {useState} from 'react'
 import StudentDashboard from './pages/StudentDashboard'
-import TeacherMaterials from './pages/TeacherMaterials'
-import TeacherLessons from './pages/TeacherLessons'
+import TeacherTabs from './components/TeacherTabs'
 
 export default function App(){
   const [role, setRole] = useState('student')
@@ -13,10 +12,7 @@ export default function App(){
         </header>
         <main className="min-h-[60vh] bg-white rounded-md shadow-sm p-6">
           {role === 'student' ? <StudentDashboard /> : (
-            <div className="space-y-6">
-              <TeacherMaterials />
-              <TeacherLessons />
-            </div>
+            <TeacherTabs />
           )}
         </main>
         <footer className="fixed right-6 bottom-6 bg-gray-800 p-3 rounded-md shadow flex items-center gap-2">
