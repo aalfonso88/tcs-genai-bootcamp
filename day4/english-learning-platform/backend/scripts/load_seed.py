@@ -6,17 +6,25 @@ from datetime import datetime, timedelta
 
 def seed():
     with Session(engine) as session:
-        # idempotent students
-        students = [
-            {"display_name": "Alexis", "level": "A"},
-            {"display_name": "Alumno Dos", "level": "B"},
-        ]
+        # Ensure only Alexis Alfonso exists as demo student
         created = 0
-        for s in students:
-            exists = session.exec(select(Student).where(Student.display_name == s["display_name"])).first()
-            if not exists:
-                session.add(Student(display_name=s["display_name"], level=s["level"]))
+        # Try to find any existing Alexis-like record
+        alexis = session.exec(select(Student).where(Student.display_name.like('%Alexis%'))).first()
+        if alexis:
+            if alexis.display_name != 'Alexis Alfonso':
+                alexis.display_name = 'Alexis Alfonso'
+                alexis.level = 'A'
+                session.add(alexis)
                 created += 1
+        else:
+            session.add(Student(display_name='Alexis Alfonso', level='A'))
+            created += 1
+
+        # Remove any other students
+        others = session.exec(select(Student).where(Student.display_name != 'Alexis Alfonso')).all()
+        for o in others:
+            session.delete(o)
+            created += 1
 
         # idempotent materials
         materials = [
