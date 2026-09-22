@@ -26,11 +26,11 @@ function MaterialForm({onCreate}){
     <form onSubmit={submit} aria-label="Formulario crear material" className="space-y-3">
       <div>
         <label htmlFor="mat-title" className="block text-sm font-medium">Título</label>
-        <input id="mat-title" value={title} onChange={e=>setTitle(e.target.value)} aria-required="true" className="mt-1 block w-full border rounded px-2 py-1" />
+        <input id="mat-title" value={title} onChange={e=>setTitle(e.target.value)} aria-required="true" className="mt-1 block w-full border rounded px-2 py-1 bg-gray-700 text-gray-100" />
       </div>
       <div>
         <label htmlFor="mat-level" className="block text-sm font-medium">Classroom Level</label>
-        <select id="mat-level" value={level} onChange={e=>setLevel(e.target.value)} className="mt-1 border rounded px-2 py-1 bg-white text-black">
+        <select id="mat-level" value={level} onChange={e=>setLevel(e.target.value)} className="mt-1 border rounded px-2 py-1 bg-gray-700 text-gray-100">
           <option value="A">Level A</option>
           <option value="B">Level B</option>
           <option value="C">Level C</option>
@@ -38,10 +38,10 @@ function MaterialForm({onCreate}){
       </div>
       <div>
         <label htmlFor="mat-desc" className="block text-sm font-medium">Descripción</label>
-        <input id="mat-desc" value={description} onChange={e=>setDescription(e.target.value)} className="mt-1 block w-full border rounded px-2 py-1" />
+        <input id="mat-desc" value={description} onChange={e=>setDescription(e.target.value)} className="mt-1 block w-full border rounded px-2 py-1 bg-gray-700 text-gray-100" />
       </div>
       {error && <div role="alert" className="text-red-600">{error}</div>}
-      <button type="submit" className="bg-blue-600 text-white px-3 py-1 rounded">Crear</button>
+      <button type="submit" className="bg-sky-600 text-white px-3 py-1 rounded">Crear</button>
     </form>
   )
 }

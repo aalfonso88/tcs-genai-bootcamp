@@ -13,7 +13,7 @@ export default function LessonsList({lessons, onStart}){
       <h3 className="text-lg font-medium">Lecciones</h3>
       <ul className="mt-2 space-y-2">
         {lessons.map(l=> (
-          <li key={l.id} className="flex justify-between items-center border rounded p-2">
+          <li key={l.id} className="flex justify-between items-center border rounded p-2 bg-gray-800">
             <div>
                 <div className="font-medium">{l.title}</div>
                 <div className="text-sm text-gray-400">{l.level} — {l.status}</div>
