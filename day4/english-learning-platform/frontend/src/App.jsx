@@ -6,23 +6,27 @@ import TeacherLessons from './pages/TeacherLessons'
 export default function App(){
   const [role, setRole] = useState('student')
   return (
-    <div>
-        <h1>Plataforma de Inglés</h1>
-      <div style={{minHeight: '70vh'}}> 
-        {role === 'student' ? <StudentDashboard /> : (
-          <div>
-            <TeacherMaterials />
-            <TeacherLessons />
-          </div>
-        )}
+    <div className="min-h-screen bg-gray-50 text-gray-900">
+      <div className="max-w-4xl mx-auto px-4 py-8">
+        <header className="mb-6">
+          <h1 className="text-3xl font-semibold">Plataforma de Inglés</h1>
+        </header>
+        <main className="min-h-[60vh] bg-white rounded-md shadow-sm p-6">
+          {role === 'student' ? <StudentDashboard /> : (
+            <div className="space-y-6">
+              <TeacherMaterials />
+              <TeacherLessons />
+            </div>
+          )}
+        </main>
+        <footer className="fixed right-6 bottom-6 bg-white p-3 rounded-md shadow flex items-center gap-2">
+          <label htmlFor="role-select" className="mr-2">Rol:</label>
+          <select id="role-select" value={role} onChange={e=>setRole(e.target.value)} aria-label="Selector de rol" className="border px-2 py-1 rounded">
+            <option value="student">Estudiante</option>
+            <option value="teacher">Profesor</option>
+          </select>
+        </footer>
       </div>
-      <footer style={{position:'fixed',right:10,bottom:10}}>
-          <label htmlFor="role-select">Rol:</label>
-          <select id="role-select" value={role} onChange={e=>setRole(e.target.value)} aria-label="Selector de rol">
-          <option value="student">Estudiante</option>
-          <option value="teacher">Profesor</option>
-        </select>
-      </footer>
     </div>
   )
 }

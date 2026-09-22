@@ -23,25 +23,25 @@ function MaterialForm({onCreate}){
   }
 
   return (
-    <form onSubmit={submit} aria-label="Formulario crear material">
+    <form onSubmit={submit} aria-label="Formulario crear material" className="space-y-3">
       <div>
-        <label htmlFor="mat-title">Título</label>
-        <input id="mat-title" value={title} onChange={e=>setTitle(e.target.value)} aria-required="true" />
+        <label htmlFor="mat-title" className="block text-sm font-medium">Título</label>
+        <input id="mat-title" value={title} onChange={e=>setTitle(e.target.value)} aria-required="true" className="mt-1 block w-full border rounded px-2 py-1" />
       </div>
       <div>
-        <label htmlFor="mat-level">Nivel</label>
-        <select id="mat-level" value={level} onChange={e=>setLevel(e.target.value)}>
+        <label htmlFor="mat-level" className="block text-sm font-medium">Nivel</label>
+        <select id="mat-level" value={level} onChange={e=>setLevel(e.target.value)} className="mt-1 border rounded px-2 py-1">
           <option value="A">A</option>
           <option value="B">B</option>
           <option value="C">C</option>
         </select>
       </div>
       <div>
-        <label htmlFor="mat-desc">Descripción</label>
-        <input id="mat-desc" value={description} onChange={e=>setDescription(e.target.value)} />
+        <label htmlFor="mat-desc" className="block text-sm font-medium">Descripción</label>
+        <input id="mat-desc" value={description} onChange={e=>setDescription(e.target.value)} className="mt-1 block w-full border rounded px-2 py-1" />
       </div>
-      {error && <div role="alert" style={{color:'red'}}>{error}</div>}
-      <button type="submit">Crear</button>
+      {error && <div role="alert" className="text-red-600">{error}</div>}
+      <button type="submit" className="bg-blue-600 text-white px-3 py-1 rounded">Crear</button>
     </form>
   )
 }
@@ -67,12 +67,15 @@ export default function TeacherMaterials(){
   }
 
   return (
-    <div>
-      <h2>Materiales (Profesor)</h2>
-      <MaterialForm onCreate={onCreate} />
-      <ul>
+    <div className="p-4 border rounded bg-white">
+      <h2 className="text-xl font-medium">Materiales (Profesor)</h2>
+      <div className="mt-3"><MaterialForm onCreate={onCreate} /></div>
+      <ul className="mt-4 space-y-2">
         {materials.map(m=> (
-          <li key={m.id}><strong>{m.title}</strong> ({m.assigned_level}) <button aria-label={`Eliminar ${m.title}`} onClick={()=>remove(m.id)}>Eliminar</button></li>
+          <li key={m.id} className="flex justify-between items-center">
+            <div><strong>{m.title}</strong> <span className="text-sm text-gray-600">({m.assigned_level})</span></div>
+            <button aria-label={`Eliminar ${m.title}`} onClick={()=>remove(m.id)} className="text-sm text-red-600">Eliminar</button>
+          </li>
         ))}
       </ul>
     </div>

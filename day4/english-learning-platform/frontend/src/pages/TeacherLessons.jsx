@@ -30,20 +30,18 @@ export default function TeacherLessons(){
   }
 
   return (
-    <div>
-      <h2>Lecciones (Profesor)</h2>
-      <form onSubmit={create} aria-label="Formulario crear lección">
-        <label htmlFor="lesson-title">Título</label>
-        <input id="lesson-title" placeholder="Título" value={title} onChange={e=>setTitle(e.target.value)} />
-        <label htmlFor="lesson-level">Nivel</label>
-        <select id="lesson-level" value={level} onChange={e=>setLevel(e.target.value)}>
+    <div className="p-4 border rounded bg-white">
+      <h2 className="text-xl font-medium">Lecciones (Profesor)</h2>
+      <form onSubmit={create} aria-label="Formulario crear lección" className="mt-3 flex gap-2 items-center">
+        <input id="lesson-title" placeholder="Título" value={title} onChange={e=>setTitle(e.target.value)} className="border rounded px-2 py-1" />
+        <select id="lesson-level" value={level} onChange={e=>setLevel(e.target.value)} className="border rounded px-2 py-1">
           <option value="A">A</option>
           <option value="B">B</option>
           <option value="C">C</option>
         </select>
-        <button type="submit">Programar</button>
+        <button type="submit" className="bg-blue-600 text-white px-3 py-1 rounded">Programar</button>
       </form>
-      <LessonsList lessons={lessons} onStart={start} />
+      <div className="mt-4"><LessonsList lessons={lessons} onStart={start} /></div>
     </div>
   )
 }
