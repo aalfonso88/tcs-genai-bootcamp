@@ -2,6 +2,7 @@ from typing import List, Optional
 from sqlmodel import Session, select
 from .models import LearningMaterial, Student, Lesson, Task, ProgressRecord
 from .db import engine
+from datetime import datetime
 
 
 def list_students() -> List[Student]:
@@ -93,7 +94,18 @@ def create_lesson(title: str, level: str, scheduled_at=None, duration_minutes: i
     if level not in ("A", "B", "C"):
         raise ValueError("level must be one of A, B, C")
     with Session(engine) as session:
-        lesson = Lesson(title=title, level=level, scheduled_at=scheduled_at, duration_minutes=duration_minutes, join_url=join_url, status="scheduled")
+        # If scheduled_at is provided as an ISO string, parse to datetime
+        if isinstance(scheduled_at, str) and scheduled_at:
+            try:
+                # accept trailing Z as UTC
+                sa = scheduled_at.replace('Z', '+00:00')
+                scheduled_at_dt = datetime.fromisoformat(sa)
+            except Exception:
+                scheduled_at_dt = None
+        else:
+            scheduled_at_dt = scheduled_at
+
+        lesson = Lesson(title=title, level=level, scheduled_at=scheduled_at_dt, duration_minutes=duration_minutes, join_url=join_url, status="scheduled")
         session.add(lesson)
         session.commit()
         session.refresh(lesson)
