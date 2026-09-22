@@ -11,7 +11,7 @@ export default function StudentDashboard(){
     api.get('/student/1/dashboard').then(r=>setData(r))
   },[])
 
-  if(!data) return <div>Cargando...</div>
+  if(!data) return <div role="status" aria-live="polite">Cargando...</div>
 
   return (
     <div>
@@ -22,7 +22,7 @@ export default function StudentDashboard(){
       <div>
         <h3>Materiales</h3>
         {data.materials.length===0? <p>No hay materiales</p>: (
-          <ul>{data.materials.map(m=><li key={m.id}>{m.title} ({m.assigned_level})</li>)}</ul>
+          <ul>{data.materials.map(m=><li key={m.id}><strong>{m.title}</strong> ({m.assigned_level})</li>)}</ul>
         )}
       </div>
     </div>

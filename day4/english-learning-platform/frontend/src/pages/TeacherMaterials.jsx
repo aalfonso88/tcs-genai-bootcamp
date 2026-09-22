@@ -23,24 +23,24 @@ function MaterialForm({onCreate}){
   }
 
   return (
-    <form onSubmit={submit}>
+    <form onSubmit={submit} aria-label="Formulario crear material">
       <div>
-        <label>Título</label>
-        <input value={title} onChange={e=>setTitle(e.target.value)} />
+        <label htmlFor="mat-title">Título</label>
+        <input id="mat-title" value={title} onChange={e=>setTitle(e.target.value)} aria-required="true" />
       </div>
       <div>
-        <label>Nivel</label>
-        <select value={level} onChange={e=>setLevel(e.target.value)}>
+        <label htmlFor="mat-level">Nivel</label>
+        <select id="mat-level" value={level} onChange={e=>setLevel(e.target.value)}>
           <option value="A">A</option>
           <option value="B">B</option>
           <option value="C">C</option>
         </select>
       </div>
       <div>
-        <label>Descripción</label>
-        <input value={description} onChange={e=>setDescription(e.target.value)} />
+        <label htmlFor="mat-desc">Descripción</label>
+        <input id="mat-desc" value={description} onChange={e=>setDescription(e.target.value)} />
       </div>
-      {error && <div style={{color:'red'}}>{error}</div>}
+      {error && <div role="alert" style={{color:'red'}}>{error}</div>}
       <button type="submit">Crear</button>
     </form>
   )
@@ -72,19 +72,9 @@ export default function TeacherMaterials(){
       <MaterialForm onCreate={onCreate} />
       <ul>
         {materials.map(m=> (
-          <li key={m.id}>{m.title} ({m.assigned_level}) <button onClick={()=>remove(m.id)}>Eliminar</button></li>
+          <li key={m.id}><strong>{m.title}</strong> ({m.assigned_level}) <button aria-label={`Eliminar ${m.title}`} onClick={()=>remove(m.id)}>Eliminar</button></li>
         ))}
       </ul>
-    </div>
-  )
-}
-import React from 'react'
-
-export default function TeacherMaterials(){
-  return (
-    <div>
-      <h2>Gestión de materiales (Prototipo)</h2>
-      <p>Interfaz mínima para crear/editar/eliminar materiales (por implementar)</p>
     </div>
   )
 }

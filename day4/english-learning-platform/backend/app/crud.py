@@ -87,3 +87,39 @@ def delete_material(material_id: int) -> bool:
         session.commit()
         return True
 
+
+# Lessons CRUD
+def create_lesson(title: str, level: str, scheduled_at=None, duration_minutes: int | None = None, join_url: str | None = None):
+    if level not in ("A", "B", "C"):
+        raise ValueError("level must be one of A, B, C")
+    with Session(engine) as session:
+        lesson = Lesson(title=title, level=level, scheduled_at=scheduled_at, duration_minutes=duration_minutes, join_url=join_url, status="scheduled")
+        session.add(lesson)
+        session.commit()
+        session.refresh(lesson)
+        return lesson
+
+
+def list_lessons(level: str | None = None):
+    with Session(engine) as session:
+        q = select(Lesson)
+        if level:
+            q = q.where(Lesson.level == level)
+        return session.exec(q).all()
+
+
+def start_lesson(lesson_id: int) -> Lesson:
+    with Session(engine) as session:
+        lesson = session.get(Lesson, lesson_id)
+        if not lesson:
+            return None
+        lesson.status = "live"
+        # In demo mode, ensure join_url exists
+        if not lesson.join_url:
+            lesson.join_url = f"https://meet.example.com/lesson/{lesson_id}"
+        session.add(lesson)
+        session.commit()
+        session.refresh(lesson)
+        return lesson
+
+

@@ -19,8 +19,11 @@ pip install -r backend/requirements.txt
 2. Run the backend server
 
 ```bash
-cd backend
-uvicorn app.main:app --reload --port 8000
+# from repo root
+export PYTHONPATH=backend
+uvicorn backend.app.main:app --reload --host 127.0.0.1 --port 8000
+# If `uvicorn` is not on your PATH (pip --user installs), run it via the full binary path, e.g.
+# /var/data/python/bin/uvicorn backend.app.main:app --reload --host 127.0.0.1 --port 8000
 ```
 
 ## Frontend (React + Vite)
@@ -30,10 +33,12 @@ uvicorn app.main:app --reload --port 8000
 ```bash
 cd frontend
 npm install
-npm run dev
+./node_modules/.bin/vite
 ```
 
-2. Open browser at the Vite dev URL and use the demo role selector in the footer to switch between `student` and `teacher` experiences. The initial UI language is Spanish.
+Note: Vite typically serves on `http://localhost:5173/`. If that port is busy, Vite will pick the next free port (e.g. `5174`).
+
+2. Open browser at the Vite dev URL and use the demo role selector in the footer to switch between `Estudiante` and `Profesor` experiences. The UI language defaults to Spanish.
 
 ## Validation scenarios
 

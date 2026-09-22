@@ -5,6 +5,7 @@ import logging
 from .db import init_db
 from .api.student import router as student_router
 from .api.materials import router as materials_router
+from .api.lessons import router as lessons_router
 from .errors import AppError, http_exception_handler, generic_exception_handler
 
 
@@ -44,3 +45,4 @@ def root():
 
 app.include_router(student_router)
 app.include_router(materials_router)
+app.include_router(lessons_router)
