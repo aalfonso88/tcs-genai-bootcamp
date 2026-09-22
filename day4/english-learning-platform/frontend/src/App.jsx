@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import StudentDashboard from './pages/StudentDashboard'
 import TeacherMaterials from './pages/TeacherMaterials'
+import TeacherLessons from './pages/TeacherLessons'
 
 export default function App(){
   const [role, setRole] = useState('student')
@@ -8,7 +9,12 @@ export default function App(){
     <div>
         <h1>Plataforma de Inglés</h1>
       <div style={{minHeight: '70vh'}}> 
-        {role === 'student' ? <StudentDashboard /> : <TeacherMaterials />}
+        {role === 'student' ? <StudentDashboard /> : (
+          <div>
+            <TeacherMaterials />
+            <TeacherLessons />
+          </div>
+        )}
       </div>
       <footer style={{position:'fixed',right:10,bottom:10}}>
           <label htmlFor="role-select">Rol:</label>
