@@ -18,3 +18,8 @@ Decisions and rationale for architecture and key unknowns.
 
 - Authentication: out of scope — role selector demo will simulate personas.
 - Material storage: store content as markdown in DB (`content` field) and optionally reference local files by `content_url`.
+
+## Recent spec updates
+
+- Frontend UI language changed to Spanish; frontend components and sample data should use Spanish labels and text.
+

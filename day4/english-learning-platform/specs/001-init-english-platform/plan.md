@@ -6,7 +6,7 @@
 
 ## Summary
 
-Initial, minimal English e-learning prototype focused on two personas: `student` and `teacher` supporting proficiency levels A, B, and C. Frontend will be a React (Vite) single-page app exposing role-based views via a demo role selector. Backend will be a minimal FastAPI service backed by SQLite for persistence. The system supports student dashboards (profile, progress, tasks, materials) and teacher flows to manage materials and schedule or start video lessons (represented by join URLs/placeholders). No authentication or external services are included in this iteration.
+Initial, minimal Spanish-language e-learning prototype focused on two personas: `student` and `teacher` supporting proficiency levels A, B, and C. Frontend will be a React (Vite) single-page app exposing role-based views via a demo role selector (no auth). Backend will be a minimal FastAPI service backed by SQLite for persistence. The system supports student dashboards (profile, progress, tasks, materials) and teacher flows to manage materials and schedule or start video lessons (represented by join URLs/placeholders). No authentication or external services are included in this iteration.
 
 ## Technical Context
 
@@ -15,6 +15,8 @@ Initial, minimal English e-learning prototype focused on two personas: `student`
 **Primary Dependencies**:
 - Backend: FastAPI, SQLModel (or SQLAlchemy + pydantic), Uvicorn for local dev
 - Frontend: React (with Vite), React Router, components library optional (lightweight)
+
+**UI Language**: Spanish (initial release). Ensure content and labels are written in Spanish in the frontend components and example data.
 
 **Storage**: SQLite database file stored in the backend project; learning material content can be stored as text/markdown in the DB or as local files referenced by `content_url`.
 
@@ -85,7 +87,7 @@ frontend/
 └── package.json
 ```
 
-**Structure Decision**: Adopt Option 2 (Web application) with separate `frontend/` and `backend/` folders to keep responsibilities clear and allow lightweight local development and builds. This matches the specified stack (React + FastAPI).
+**Structure Decision**: Adopt Option 2 (Web application) with separate `frontend/` and `backend/` folders to keep responsibilities clear and allow lightweight local development and builds. This matches the specified stack (React + FastAPI). Include a small demo-only role selector UI component in the frontend footer to toggle `student`/`teacher` personas as required by the spec.
 
 ## Complexity Tracking
 

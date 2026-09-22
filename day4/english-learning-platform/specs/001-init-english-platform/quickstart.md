@@ -33,7 +33,7 @@ npm install
 npm run dev
 ```
 
-2. Open browser at the Vite dev URL and use the demo role selector in the footer to switch between `student` and `teacher` experiences.
+2. Open browser at the Vite dev URL and use the demo role selector in the footer to switch between `student` and `teacher` experiences. The initial UI language is Spanish.
 
 ## Validation scenarios
 
