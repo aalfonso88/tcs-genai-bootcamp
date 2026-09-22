@@ -10,17 +10,18 @@ export default function LessonsList({lessons, onStart}){
 
   return (
     <div>
-      <h3 className="text-lg font-medium">Lecciones</h3>
+      <h3 className="text-lg font-medium text-slate-100">Lecciones</h3>
       <ul className="mt-2 space-y-2">
         {lessons.map(l=> (
-          <li key={l.id} className="flex justify-between items-center border rounded p-2 bg-gray-800">
+          <li key={l.id} className="flex justify-between items-center border rounded p-2 bg-slate-700">
             <div>
-                <div className="font-medium">{l.title}</div>
-                <div className="text-sm text-gray-400">{l.level} — {l.status}</div>
+                <div className="font-medium text-slate-100">{l.title}</div>
+                <div className="text-sm text-slate-300">{l.level} — {l.status}{l.scheduled_at ? ` — ${new Date(l.scheduled_at).toLocaleString()}` : ''}</div>
+                {l.status==='completed' && <div className="text-sm text-emerald-300 mt-1">Completada ✓</div>}
             </div>
             <div>
-              {l.status==='scheduled' && <button className="bg-green-600 text-white px-2 py-1 rounded" onClick={()=>onStart(l.id)}>Iniciar</button>}
-              {l.status==='live' && <a className="text-blue-600" href={l.join_url || '#'} target="_blank" rel="noreferrer">Unirse</a>}
+              {l.status==='scheduled' && <button className="bg-teal-500 text-slate-900 px-2 py-1 rounded hover:opacity-90 transition" onClick={()=>onStart(l.id)}>Iniciar</button>}
+              {l.status==='live' && <a className="text-teal-300 hover:underline" href={l.join_url || '#'} target="_blank" rel="noreferrer">Unirse</a>}
             </div>
           </li>
         ))}
