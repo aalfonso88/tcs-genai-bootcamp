@@ -7,8 +7,11 @@ export default function StudentDashboard(){
   const [data, setData] = useState(null)
 
   useEffect(()=>{
-    // demo: use student id 1
-    api.get('/student/1/dashboard').then(r=>setData(r))
+    // demo: fetch first available student dynamically
+    api.get('/student/').then(students=>{
+      const id = (students && students.length>0) ? students[0].id : 1
+      api.get(`/student/${id}/dashboard`).then(r=>setData(r))
+    }).catch(()=> api.get('/student/1/dashboard').then(r=>setData(r)))
   },[])
 
   if(!data) return <div role="status" aria-live="polite">Cargando...</div>
