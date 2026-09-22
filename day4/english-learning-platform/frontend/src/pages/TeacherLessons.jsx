@@ -6,6 +6,7 @@ export default function TeacherLessons(){
   const [title, setTitle] = useState('')
   const [level, setLevel] = useState('A')
   const [time, setTime] = useState('09:00')
+  const [date, setDate] = useState('')
 
   useEffect(()=>{ fetchLessons() },[])
 
@@ -17,9 +18,10 @@ export default function TeacherLessons(){
 
   async function create(e){
     e.preventDefault()
+    const scheduled_at = date ? `${date}T${time}:00Z` : undefined
     const res = await fetch('http://localhost:8000/api/lessons/', {
       method: 'POST', headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({title, level})
+      body: JSON.stringify({title, level, scheduled_at})
     })
     if(res.ok){ const j = await res.json(); setLessons(prev=>[...prev,j]); setTitle('') }
     else { const txt = await res.text(); console.error('Error crear lección', txt) }
@@ -44,7 +46,9 @@ export default function TeacherLessons(){
           </select>
         </div>
         <div>
-          <label className="block text-sm text-slate-200">Hora</label>
+          <label className="block text-sm text-slate-200">Fecha</label>
+          <input type="date" value={date} onChange={e=>setDate(e.target.value)} className="border rounded px-2 py-1 bg-slate-700 text-slate-100" />
+          <label className="block text-sm text-slate-200 mt-2">Hora</label>
           <select id="lesson-time" value={time} onChange={e=>setTime(e.target.value)} className="border rounded px-2 py-1 bg-slate-700 text-slate-100">
             {Array.from({length:10}).map((_,i)=>{
               const h=9+i; const v = (h<10? '0'+h : h)+':00'; return <option key={v} value={v}>{v}</option>
