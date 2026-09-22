@@ -29,6 +29,8 @@
 
 **Independent Test**: Run backend and frontend locally, select `Student` in demo role selector, open `/student/dashboard` and verify data loads from `GET /api/student/{id}/dashboard`.
 
+- [ ] T009A [US1] Create a demo-only role selector component in the frontend footer that switches between student and teacher experiences without authentication.
+
 - [ ] T010 [US1] Implement backend endpoint `GET /api/student/{id}/dashboard` in `backend/app/api/student.py` returning profile, progress, tasks, and materials (match `contracts/api.md` schema)
 - [ ] T011 [US1] Implement service function in `backend/app/crud.py` to assemble dashboard payload for a given student id
 - [ ] T012 [US1] Create frontend page `frontend/src/pages/StudentDashboard.jsx` to render profile, progress summary, task list, and materials list
@@ -43,14 +45,14 @@
 
 ## Phase 4: User Story 2 - Teacher manages materials (Priority: P1)
 
-**Goal**: Allow teachers to create, edit, and delete learning materials scoped by level.
+**Goal**: Allow teachers to upload, and delete learning materials scoped by level.
 
 **Independent Test**: As `Teacher` via demo selector, create a material for level B and verify it appears in `/api/materials?level=B` and in student dashboard for level B.
 
-- [ ] T017 [US2] Implement backend endpoints for materials: `POST /api/teacher/materials`, `PUT /api/teacher/materials/{id}`, `DELETE /api/teacher/materials/{id}` in `backend/app/api/materials.py`
+- [ ] T017 [US2] Implement backend endpoints for materials: `POST /api/teacher/materials` in `backend/app/api/materials.py`
 - [ ] T018 [US2] Implement CRUD functions in `backend/app/crud.py` for materials persistence and validation (required fields: title, assigned_level)
-- [ ] T019 [US2] Create frontend page `frontend/src/pages/TeacherMaterials.jsx` with material creation/edit form and materials list
-- [ ] T020 [US2] Add frontend component `frontend/src/components/MaterialEditor.jsx` and wire to API client for POST/PUT/DELETE
+- [ ] T019 [US2] Create frontend page `frontend/src/pages/TeacherMaterials.jsx` with material creation form and materials list
+- [ ] T020 [US2] Add frontend component `frontend/src/components/MaterialEditor.jsx` and wire to API client for POST
 - [ ] T021 [US2] Validate required fields on frontend and show errors in `TeacherMaterials.jsx` (prevent publish with missing title or level)
 - [ ] T022 [US2] Add integration check: created material is visible to students of the assigned level by verifying `GET /api/materials?level={level}`
 
@@ -68,7 +70,8 @@
 - [ ] T024 [US3] Implement persistence and status transitions for `Lesson` in `backend/app/crud.py` (scheduled -> live -> completed)
 - [ ] T025 [US3] Create frontend page `frontend/src/pages/TeacherLessons.jsx` to schedule and start lessons
 - [ ] T026 [US3] Create frontend component `frontend/src/components/LessonsList.jsx` to show upcoming lessons for a level and join button for live lessons
-- [ ] T027 [US3] Wire join button to `lesson.join_url` placeholder; show appropriate empty-state message if no lessons scheduled
+- [ ] T027 [US3] Implement the join button as a demo-only action for live lessons and show an appropriate empty-state message when no lessons are scheduled.
+
 
 **Checkpoint**: Lesson scheduling and immediate start flows are operational and visible to students.
 

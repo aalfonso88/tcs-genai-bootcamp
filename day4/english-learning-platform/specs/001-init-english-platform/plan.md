@@ -28,7 +28,7 @@ Initial, minimal Spanish-language e-learning prototype focused on two personas: 
 
 **Project Type**: Web application (separate `backend/` and `frontend/` projects)
 
-**Performance Goals**: Prototype scale — low traffic, responsiveness target: interactive UI actions complete under 500ms in dev; no production SLOs required for this iteration.
+**Performance Goals**: Prototype scale; no production performance targets are required for this iteration.
 
 **Constraints**:
 - No authentication or external integrations.

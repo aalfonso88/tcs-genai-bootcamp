@@ -1,8 +1,21 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+import logging
 
 from .db import init_db
 from .api.student import router as student_router
+from .api.materials import router as materials_router
+from .errors import AppError, http_exception_handler, generic_exception_handler
+
+
+def setup_logging():
+    logger = logging.getLogger()
+    handler = logging.StreamHandler()
+    formatter = logging.Formatter('%(asctime)s %(levelname)s %(name)s %(message)s')
+    handler.setFormatter(formatter)
+    logger.addHandler(handler)
+    logger.setLevel(logging.INFO)
+
 
 app = FastAPI(title="English Learning Platform - Backend")
 
@@ -17,7 +30,11 @@ app.add_middleware(
 
 @app.on_event("startup")
 def on_startup():
+    setup_logging()
     init_db()
+    # register exception handlers
+    app.add_exception_handler(AppError, http_exception_handler)
+    app.add_exception_handler(Exception, generic_exception_handler)
 
 
 @app.get("/")
@@ -26,3 +43,4 @@ def root():
 
 
 app.include_router(student_router)
+app.include_router(materials_router)
